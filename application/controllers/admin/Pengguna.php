@@ -11,22 +11,39 @@ class Pengguna extends CI_Controller{
 	}
 
 
-	function index(){
-		$kode=$this->session->userdata('idadmin');
-		$x['user']=$this->m_pengguna->get_pengguna_login($kode);
-		$x['data']=$this->m_pengguna->get_all_pengguna();
-		$this->load->view('admin/v_pengguna',$x);
+	public function index() {
+		$kode = $this->session->userdata('idadmin');
+		$type = $this->input->get('type');
+		$code = '';
+	
+		if ($type == "super_admin") {
+			$code = '1';
+		} else {
+			$code = '2';
+		}
+	
+		$x['user'] = $this->m_pengguna->get_pengguna_login($kode);
+		$x['data'] = $this->m_pengguna->get_all_pengguna($code);
+	
+		if ($type == "super_admin") {
+			$this->load->view('admin/v_pengguna', $x);
+		} else {
+			$this->load->view('admin/v_admin_fakultas', $x);
+		}
 	}
+	
 
 	
 	function simpan_pengguna(){
-	            $config['upload_path'] = './assets/images/'; //path folder
-	            $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
-	            $config['encrypt_name'] = TRUE; //nama yang terupload nantinya
+	            $config['upload_path'] = './assets/images/';
+	            $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp';
+	            $config['encrypt_name'] = TRUE;
 
 	            $this->upload->initialize($config);
+				$gambar='';
 	            if(!empty($_FILES['filefoto']['name']))
 	            {
+					
 	                if ($this->upload->do_upload('filefoto'))
 	                {
 	                        $gbr = $this->upload->data();
@@ -41,48 +58,30 @@ class Pengguna extends CI_Controller{
 	                        $config['new_image']= './assets/images/'.$gbr['file_name'];
 	                        $this->load->library('image_lib', $config);
 	                        $this->image_lib->resize();
-
 	                        $gambar=$gbr['file_name'];
-	                        $idjemaat=$this->input->post('xidjemaat');
-	                        $nama=$this->input->post('xnama');
-	                        $username=$this->input->post('xusername');
-	                        $password=$this->input->post('xpassword');
-                            $konfirm_password=$this->input->post('xpassword2');
-                            $email=$this->input->post('xemail');
-                            $level=$this->input->post('xlevel');
-     						if ($password <> $konfirm_password) {
-     							echo $this->session->set_flashdata('msg','error');
-	               				redirect('admin/pengguna');
-     						}else{
-	               				$this->m_pengguna->simpan_pengguna($idjemaat,$nama,$username,$password,$email,$level,$gambar);
-	                    		echo $this->session->set_flashdata('msg','success');
-	               				redirect('admin/pengguna');
-	               				
-	               			}
+	                       
 	                    
 	                }else{
 	                    echo $this->session->set_flashdata('msg','warning');
 	                    redirect('admin/pengguna');
 	                }
 	                 
-	            }else{
-	                $idjemaat=$this->input->post('xidjemaat');
-	                $nama=$this->input->post('xnama');
-	                $username=$this->input->post('xusername');
-	                $password=$this->input->post('xpassword');
-                    $konfirm_password=$this->input->post('xpassword2');
-                    $email=$this->input->post('xemail');
-                    $level=$this->input->post('xlevel');
-	            	if ($password <> $konfirm_password) {
-     					echo $this->session->set_flashdata('msg','error');
-	               		redirect('admin/pengguna');
-     				}else{
-	               		$this->m_pengguna->simpan_pengguna_tanpa_gambar($idjemaat,$nama,$username,$password,$email,$level);
-	                    echo $this->session->set_flashdata('msg','success');
-	               		redirect('admin/pengguna');
-	               	}
-	            } 
-
+	            }
+				$nama=$this->input->post('xnama');
+				$username=$this->input->post('xusername');
+				$password=$this->input->post('xpassword');
+				$konfirm_password=$this->input->post('xpassword2');
+				$email=$this->input->post('xemail');
+				$level=$this->input->post('xlevel');
+				if ($password <> $konfirm_password) {
+					 echo $this->session->set_flashdata('msg','error');
+					   redirect('admin/pengguna');
+				}else{
+					   $this->m_pengguna->simpan_pengguna($nama,$username,$password,$email,$level,$gambar);
+					echo $this->session->set_flashdata('msg','success');
+					   redirect('admin/pengguna');
+					   
+				}
 	}
 
 	function update_pengguna(){
@@ -92,6 +91,7 @@ class Pengguna extends CI_Controller{
 	            $config['encrypt_name'] = TRUE; //nama yang terupload nantinya
 
 	            $this->upload->initialize($config);
+				$gambar = "";
 	            if(!empty($_FILES['filefoto']['name']))
 	            {
 	                if ($this->upload->do_upload('filefoto'))
@@ -109,55 +109,24 @@ class Pengguna extends CI_Controller{
 	                        $this->load->library('image_lib', $config);
 	                        $this->image_lib->resize();
 
-	                        $gambar=$gbr['file_name'];
-	                        $kode=$this->input->post('kode');
-	                        $idjemaat=$this->input->post('xidjemaat');
-	                        $nama=$this->input->post('xnama');
-	                        $username=$this->input->post('xusername');
-	                		$password=$this->input->post('xpassword');
-                    		$konfirm_password=$this->input->post('xpassword2');
-                    		$email=$this->input->post('xemail');
-                    		$level=$this->input->post('xlevel');
-                            if (empty($password) && empty($konfirm_password)) {
-                            	$this->m_pengguna->update_pengguna_tanpa_pass($kode,$idjemaat,$nama,$username,$password,$email,$level,$gambar);
-	                    		echo $this->session->set_flashdata('msg','info');
-	               				redirect('admin/pengguna');
-     						}elseif ($password <> $konfirm_password) {
-     							echo $this->session->set_flashdata('msg','error');
-	               				redirect('admin/pengguna');
-     						}else{
-	               				$this->m_pengguna->update_pengguna($kode,$idjemaat,$nama,$username,$password,$email,$level,$gambar);
-	                    		echo $this->session->set_flashdata('msg','info');
-	               				redirect('admin/pengguna');
-	               			}
-	                    
-	                }else{
-	                    echo $this->session->set_flashdata('msg','warning');
-	                    redirect('admin/pengguna');
+	                        $gambar=$gbr['file_name']; 
 	                }
 	                
-	            }else{
-	            	$kode=$this->input->post('kode');
-	            	$idjemaat=$this->input->post('xidjemaat');
-	            	$nama=$this->input->post('xnama');
-	            	$username=$this->input->post('xusername');
-	                $password=$this->input->post('xpassword');
-                    $konfirm_password=$this->input->post('xpassword2');
-                    $email=$this->input->post('xemail');
-                    $level=$this->input->post('xlevel');
-	            	if (empty($password) && empty($konfirm_password)) {
-                       	$this->m_pengguna->update_pengguna_tanpa_pass_dan_gambar($kode,$idjemaat,$nama,$username,$password,$email,$level);
-	                    echo $this->session->set_flashdata('msg','info');
-	               		redirect('admin/pengguna');
-     				}elseif ($password <> $konfirm_password) {
-     					echo $this->session->set_flashdata('msg','error');
-	               		redirect('admin/pengguna');
-     				}else{
-	               		$this->m_pengguna->update_pengguna_tanpa_gambar($kode,$idjemaat,$nama,$username,$password,$email,$level);
-	                    echo $this->session->set_flashdata('msg','warning');
-	               		redirect('admin/pengguna');
-	               	}
-	            } 
+	            }
+				$kode=$this->input->post('kode');
+				$nama=$this->input->post('xnama');
+				$username=$this->input->post('xusername');
+				$email=$this->input->post('xemail');
+				$level=$this->input->post('xlevel');
+				if ($gambar=="") {
+					$this->m_pengguna->update_pengguna_tanpa_gambar($kode,$nama,$username,$email,$level);
+					redirect('admin/pengguna');
+				} else {
+					$this->m_pengguna->update_pengguna($kode,$nama,$username,$email,$level,$gambar);
+					redirect('admin/pengguna');
+				}
+                           
+	                   
 
 	}
 

@@ -10,7 +10,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Data Superadmin</title>
+  <title>Data Admin Fakultas</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="shorcut icon" type="text/css" href="<?php echo base_url().'theme/images/HKBP2.png'?>">
@@ -46,13 +46,13 @@ $this->load->view('admin/v_sidebar', $page);
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data Superadmin
+        Data Admin Fakultas
         <small></small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="#">Administrator</a></li>
-        <li class="active">Data Superadmin</li>
+        <li class="active">Data Admin Fakultas</li>
       </ol>
     </section>
 
@@ -64,14 +64,14 @@ $this->load->view('admin/v_sidebar', $page);
 
           <div class="box">
             <div class="box-header">
-              <a class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModal"><span class="fa fa-user-plus"></span> Add Superadmin</a>
+              <a class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModal"><span class="fa fa-user-plus"></span> Add Admin Fakultas</a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <table id="example1" class="table table-striped" style="font-size:13px;">
                 <thead>
                 <tr>
-					<th>Photo</th>
+                    <th>Photo</th>
                     <th>Nama</th>
                     <th>Email</th>
                     <th>Level</th>
@@ -91,7 +91,7 @@ $this->load->view('admin/v_sidebar', $page);
                   <td><img width="40" height="40" class="img-circle" src="<?php echo base_url().'assets/images/'.$pengguna_photo;?>"></td>
                   <td><?php echo $nama;?></td>
                   <td><?php echo $pengguna_email;?></td>
-                  <td>Superadmin</td>
+                  <td>Admin Fakultas</td>
 
                   <td style="text-align:right;">
                         <a class="btn" data-toggle="modal" data-target="#ModalEdit<?php echo $pengguna_id;?>"><span class="fa fa-pencil"></span></a>
@@ -127,7 +127,7 @@ $this->load->view('admin/v_sidebar', $page);
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><span class="fa fa-close"></span></span></button>
-                        <h4 class="modal-title" id="myModalLabel">Add Superadmin</h4>
+                        <h4 class="modal-title" id="myModalLabel">Add Admin Fakultas</h4>
                     </div>
                     <form class="form-horizontal" action="<?php echo base_url().'admin/pengguna/simpan_pengguna'?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
@@ -169,7 +169,7 @@ $this->load->view('admin/v_sidebar', $page);
                                         <label for="inputUserName" class="col-sm-4 control-label">Level</label>
                                         <div class="col-sm-7">
                                             <select class="form-control" name="xlevel" required>
-                                                <option value="1">Superadmin</option>
+                                                <option value="2">Admin Fakultas</option>
                                             </select>
                                         </div>
                                     </div>
@@ -208,7 +208,7 @@ $this->load->view('admin/v_sidebar', $page);
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><span class="fa fa-close"></span></span></button>
-                        <h4 class="modal-title" id="myModalLabel">Edit Superadmin</h4>
+                        <h4 class="modal-title" id="myModalLabel">Edit Admin Fakultas</h4>
                     </div>
                     <form class="form-horizontal" action="<?php echo base_url().'admin/pengguna/update_pengguna'?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
@@ -242,7 +242,7 @@ $this->load->view('admin/v_sidebar', $page);
                                         <label for="inputUserName" class="col-sm-4 control-label">Level</label>
                                         <div class="col-sm-7">
                                             <select class="form-control" name="xlevel" required>
-                                                <option value="1" selected>Administrator</option>
+                                                <option value="2" selected>Admin Fakultas</option>
                                             </select>
                                         </div>
                                     </div>
@@ -280,12 +280,12 @@ $this->load->view('admin/v_sidebar', $page);
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><span class="fa fa-close"></span></span></button>
-                        <h4 class="modal-title" id="myModalLabel">Hapus Superadmin</h4>
+                        <h4 class="modal-title" id="myModalLabel">Hapus Admin Fakultas</h4>
                     </div>
                     <form class="form-horizontal" action="<?php echo base_url().'admin/pengguna/hapus_pengguna'?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
 							<input type="hidden" name="kode" value="<?php echo $pengguna_id;?>"/>
-                            <p>Apakah Anda yakin mau menghapus Superadmin <b><?php echo $nama;?></b> ?</p>
+                            <p>Apakah Anda yakin mau menghapus Admin Fakultas <b><?php echo $nama;?></b> ?</p>
 
                     </div>
                     <div class="modal-footer">
@@ -390,7 +390,7 @@ $this->load->view('admin/v_sidebar', $page);
         <script type="text/javascript">
                 $.toast({
                     heading: 'Success',
-                    text: "Superadmin Berhasil disimpan ke database.",
+                    text: "Admin Fakultas Berhasil disimpan ke database.",
                     showHideTransition: 'slide',
                     icon: 'success',
                     hideAfter: false,
@@ -402,7 +402,7 @@ $this->load->view('admin/v_sidebar', $page);
         <script type="text/javascript">
                 $.toast({
                     heading: 'Info',
-                    text: "Superadmin berhasil di update",
+                    text: "Admin Fakultas berhasil di update",
                     showHideTransition: 'slide',
                     icon: 'info',
                     hideAfter: false,
@@ -414,7 +414,7 @@ $this->load->view('admin/v_sidebar', $page);
         <script type="text/javascript">
                 $.toast({
                     heading: 'Success',
-                    text: "Superadmin Berhasil dihapus.",
+                    text: "Admin Fakultas Berhasil dihapus.",
                     showHideTransition: 'slide',
                     icon: 'success',
                     hideAfter: false,
