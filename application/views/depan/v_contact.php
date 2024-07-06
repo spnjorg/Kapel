@@ -5,36 +5,36 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>HKBP II - Contact</title>
-        <link rel="shorcut icon" href="<?php echo base_url().'theme/images/HKBP2.png'?>">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="<?php echo base_url().'theme/css/bootstrap.min.css'?>">
+    <title>KAPEL - Contact</title>
+        <link rel="shorcut icon" href="<?php echo base_url() . 'theme/images/UNIKA1.png' ?>">    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="<?php echo base_url() . 'theme/css/bootstrap.min.css' ?>">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Lora:400,700" rel="stylesheet">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="<?php echo base_url().'theme/css/font-awesome.min.css'?>">
+    <link rel="stylesheet" href="<?php echo base_url() . 'theme/css/font-awesome.min.css' ?>">
     <!-- Simple Line Font -->
-    <link rel="stylesheet" href="<?php echo base_url().'theme/css/simple-line-icons.css'?>">
+    <link rel="stylesheet" href="<?php echo base_url() . 'theme/css/simple-line-icons.css' ?>">
     <!-- Slider / Carousel -->
-    <link rel="stylesheet" href="<?php echo base_url().'theme/css/slick.css'?>">
-    <link rel="stylesheet" href="<?php echo base_url().'theme/css/slick-theme.css'?>">
-    <link rel="stylesheet" href="<?php echo base_url().'theme/css/owl.carousel.min.css'?>">
+    <link rel="stylesheet" href="<?php echo base_url() . 'theme/css/slick.css' ?>">
+    <link rel="stylesheet" href="<?php echo base_url() . 'theme/css/slick-theme.css' ?>">
+    <link rel="stylesheet" href="<?php echo base_url() . 'theme/css/owl.carousel.min.css' ?>">
     <!-- Main CSS -->
-    <link href="<?php echo base_url().'theme/css/style.css'?>" rel="stylesheet">
+    <link href="<?php echo base_url() . 'theme/css/style.css' ?>" rel="stylesheet">
     <?php
-        function limit_words($string, $word_limit){
-            $words = explode(" ",$string);
-            return implode(" ",array_splice($words,0,$word_limit));
-        }
-    ?>
-    
+function limit_words($string, $word_limit)
+{
+    $words = explode(" ", $string);
+    return implode(" ", array_splice($words, 0, $word_limit));
+}
+?>
+
 </head>
 
 <body>
   <!--============================= HEADER =============================-->
     <?php
-    $this->load->view('depan/v_header');
-  ?>
+$this->load->view('depan/v_header');
+?>
    <!--============================= END HEADER =============================-->
 
 <section class="contact">
@@ -53,7 +53,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-6 contact-option">
                             <div class="contact-option_rsp">
                                 <h3>Tinggalkan Pesan</h3>
-                                <form action="<?php echo site_url('contact/kirim_pesan');?>" method="post">
+                                <form action="<?php echo site_url('contact/kirim_pesan'); ?>" method="post">
                                     <div class="form-group">
                                         <input type="text" class="form-control" placeholder="Name" name="xnama" required>
                                     </div>
@@ -71,7 +71,7 @@
                                     </div>
                                     <!-- // end .form-group -->
                                     <button type="submit" class="btn btn-default btn-submit">SUBMIT</button>
-                                    <div><?php echo $this->session->flashdata('msg');?></div>
+                                    <div><?php echo $this->session->flashdata('msg'); ?></div>
                                     <!-- // end #js-contact-result -->
                                 </form>
                             </div>
@@ -114,22 +114,22 @@
 
   <!--============================= FOOTER =============================-->
 <?php
-    $this->load->view('depan/v_footer');
-  ?>
+$this->load->view('depan/v_footer');
+?>
     <!--============================= END FOOTER =============================-->
 
             <!-- jQuery, Bootstrap JS. -->
-            <script src="<?php echo base_url().'theme/js/jquery.min.js'?>"></script>
-            <script src="<?php echo base_url().'theme/js/tether.min.js'?>"></script>
-            <script src="<?php echo base_url().'theme/js/bootstrap.min.js'?>"></script>
-            <script src="<?php echo base_url().'theme/js/owl.carousel.min.js'?>"></script>
-            <script src="<?php echo base_url().'theme/js/validate.js'?>"></script>
-            <script src="<?php echo base_url().'theme/js/tweetie.min.js'?>"></script>
+            <script src="<?php echo base_url() . 'theme/js/jquery.min.js' ?>"></script>
+            <script src="<?php echo base_url() . 'theme/js/tether.min.js' ?>"></script>
+            <script src="<?php echo base_url() . 'theme/js/bootstrap.min.js' ?>"></script>
+            <script src="<?php echo base_url() . 'theme/js/owl.carousel.min.js' ?>"></script>
+            <script src="<?php echo base_url() . 'theme/js/validate.js' ?>"></script>
+            <script src="<?php echo base_url() . 'theme/js/tweetie.min.js' ?>"></script>
             <!-- Subscribe / Contact-->
-            <script src="<?php echo base_url().'theme/js/subscribe.js'?>"></script>
-            <script src="<?php echo base_url().'theme/js/contact.js'?>"></script>
+            <script src="<?php echo base_url() . 'theme/js/subscribe.js' ?>"></script>
+            <script src="<?php echo base_url() . 'theme/js/contact.js' ?>"></script>
             <!-- Script JS -->
-            <script src="<?php echo base_url().'theme/js/script.js'?>"></script>
+            <script src="<?php echo base_url() . 'theme/js/script.js' ?>"></script>
         </body>
 
         </html>
