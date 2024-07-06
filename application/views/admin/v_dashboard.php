@@ -1,10 +1,7 @@
 <!--Counter Inbox-->
 <?php
 error_reporting(0);
-$query = $this->db->query("SELECT * FROM tbl_inbox WHERE inbox_status='1'");
-$query2 = $this->db->query("SELECT * FROM tbl_komentar WHERE komentar_status='0'");
-$jum_comment = $query2->num_rows();
-$jum_pesan = $query->num_rows();
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -46,132 +43,12 @@ foreach ($visitor as $result) {
 $this->load->view('admin/v_header');
 ?>
 
-  <!-- Left side column. contains the logo and sidebar -->
-  <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-
-      <!-- /.search form -->
-      <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu">
-        <li class="header">Menu Utama</li>
-
-        <li class="active">
-          <a href="<?php echo base_url() . 'admin/dashboard' ?>">
-            <i class="fa fa-star-o fa-pulse"></i> <span>Dashboard</span>
-            <span class="pull-right-container">
-              <small class="label pull-right"></small>
-            </span>
-          </a>
-        </li>
-
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-group"></i>
-            <span>Administrator</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="<?php echo base_url() . 'admin/renungan' ?>"><i class="fa fa-user-plus"></i> Super Admin</a></li>
-            <li><a href="<?php echo base_url() . 'admin/renungan/add_renungan' ?>"><i class="fa fa-user-plus"></i> Admin Fakultas</a></li>
-          </ul>
-        </li>
-
-        <li>
-          <a href="<?php echo base_url() . 'admin/lingkungan' ?>">
-              <i i class="fa fa-user"></i> <span>Petugas Misa</span>
-              <span class="pull-right-container">
-              <small class="label pull-right"></small>
-            </span>
-          </a>
-        </li>
-
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-book"></i>
-            <span>Jadwal</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="<?php echo base_url() . 'admin/jadwalibadah' ?>"><i class="fa fa-plus"></i> Misa </a></li>
-            <li><a href="<?php echo base_url() . 'admin/jadwalpetugas' ?>"><i class="fa fa-list"></i> Lainnya</a></li>
-          </ul>
-        </li>
-
-        <li>
-          <a href="<?php echo base_url() . 'admin/pengumuman' ?>">
-            <i class="fa fa-volume-up"></i> <span>Pengumuman</span>
-            <span class="pull-right-container">
-              <small class="label pull-right"></small>
-            </span>
-          </a>
-        </li>
-
-        <li>
-          <a href="<?php echo base_url() . 'admin/agenda' ?>">
-            <i class="fa fa-calendar"></i> <span>Agenda</span>
-            <span class="pull-right-container">
-              <small class="label pull-right"></small>
-            </span>
-          </a>
-        </li>
-
-        <li>
-          <a href="<?php echo base_url() . 'admin/agenda' ?>">
-            <i class="fa fa-camera"></i> <span>Gallery</span>
-            <span class="pull-right-container">
-              <small class="label pull-right"></small>
-            </span>
-          </a>
-        </li>
-
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-print"></i>
-            <span>Cetak</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="<?php echo base_url() . 'admin/jadwalibadah' ?>"><i class="fa fa-dollar"></i> Data Kolekte </a></li>
-          </ul>
-        </li>
-
-        <li>
-          <a href="<?php echo base_url() . 'admin/inbox' ?>">
-            <i class="fa fa-envelope"></i> <span>Inbox</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-green"><?php echo $jum_pesan; ?></small>
-            </span>
-          </a>
-        </li>
-
-        <li>
-          <a href="<?php echo base_url() . 'admin/komentar' ?>">
-            <i class="fa fa-comments"></i> <span>Komentar</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-green"><?php echo $jum_comment; ?></small>
-            </span>
-          </a>
-        </li>
-
-         <li>
-          <a href="<?php echo base_url() . 'administrator' ?>">
-            <i class="fa fa-sign-out"></i> <span>Sign Out</span>
-            <span class="pull-right-container">
-              <small class="label pull-right"></small>
-            </span>
-          </a>
-        </li>
-       </ul>
-    </section>
-    <!-- /.sidebar -->
-  </aside>
+<?php
+$page = array (
+  "page" => "dashboard"
+);
+$this->load->view('admin/v_sidebar', $page);
+?>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">

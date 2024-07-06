@@ -36,7 +36,7 @@
   ?>
  <?php
 $page = array (
-  "page" => "admin"
+  "page" => "fakultas"
 );
 $this->load->view('admin/v_sidebar', $page);
 ?>
@@ -46,13 +46,13 @@ $this->load->view('admin/v_sidebar', $page);
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data Superadmin
+        Data Fakultas
         <small></small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Administrator</a></li>
-        <li class="active">Data Superadmin</li>
+        <li><a href="#">Master Data</a></li>
+        <li class="active">Fakultas</li>
       </ol>
     </section>
 
@@ -64,39 +64,35 @@ $this->load->view('admin/v_sidebar', $page);
 
           <div class="box">
             <div class="box-header">
-              <a class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModal"><span class="fa fa-user-plus"></span> Add Superadmin</a>
+              <a class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModal"><span class="fa fa-user-plus"></span> Add Fakultas</a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <table id="example1" class="table table-striped" style="font-size:13px;">
                 <thead>
                 <tr>
-					<th>Photo</th>
-                    <th>Nama</th>
-                    <th>Email</th>
-                    <th>Level</th>
+                    <th>Nama Fakultas</th>
+                    <th>Admin Fakultas</th>
+                    <th>Jumlah Mahasiswa</th>
                     <th style="text-align:end;">Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
 				<?php foreach ($data->result_array() as $i) :
-                       $pengguna_id=$i['pengguna_id'];
-                       $nama=$i['pengguna_nama'];
-                       $pengguna_email=$i['pengguna_email'];
-                       $pengguna_username=$i['pengguna_username'];
-                       $pengguna_level=$i['pengguna_level'];
-                       $pengguna_photo=$i['pengguna_photo'];
+                       $id_fakultas=$i['id'];
+                       $nama_fakultas=$i['nama_fakultas'];
+                       $admin_fakultas=$i['nama_admin'];
+                    //    $jlh_mahasiswa=$i['jlh_mahasiswa'];
                     ?>
                 <tr>
-                  <td><img width="40" height="40" class="img-circle" src="<?php echo base_url().'assets/images/'.$pengguna_photo;?>"></td>
-                  <td><?php echo $nama;?></td>
-                  <td><?php echo $pengguna_email;?></td>
-                  <td>Superadmin</td>
+                  <td><?php echo $nama_fakultas;?></td>
+                  <td><?php echo $admin_fakultas;?></td>
+                  <td>0 Orang</td>
 
                   <td style="text-align:right;">
-                        <a class="btn" data-toggle="modal" data-target="#ModalEdit<?php echo $pengguna_id;?>"><span class="fa fa-pencil"></span></a>
-                        <a class="btn" href="<?php echo base_url().'admin/pengguna/reset_password/'.$pengguna_id;?>"><span class="fa fa-refresh"></span></a>
-                        <a class="btn" data-toggle="modal" data-target="#ModalHapus<?php echo $pengguna_id;?>"><span class="fa fa-trash"></span></a>
+                        <a class="btn" data-toggle="modal" data-target="#ModalEdit<?php echo $id_fakultas;?>"><span class="fa fa-pencil"></span></a>
+                        <a class="btn" href="<?php echo base_url().'admin/pengguna/reset_password/'.$id_fakultas;?>"><span class="fa fa-refresh"></span></a>
+                        <a class="btn" data-toggle="modal" data-target="#ModalHapus<?php echo $id_fakultas;?>"><span class="fa fa-trash"></span></a>
                   </td>
                 </tr>
 				<?php endforeach;?>
@@ -194,16 +190,12 @@ $this->load->view('admin/v_sidebar', $page);
 
 
 		<?php foreach ($data->result_array() as $i) :
-              $pengguna_id=$i['pengguna_id'];
-                       $pengguna_nama=$i['pengguna_nama'];
-                       $pengguna_email=$i['pengguna_email'];
-                       $pengguna_username=$i['pengguna_username'];
-                       $pengguna_password=$i['pengguna_password'];
-                       $pengguna_level=$i['pengguna_level'];
-                       $pengguna_photo=$i['pengguna_photo'];
+               $id_fakultas=$i['id'];
+               $nama_fakultas=$i['nama_fakultas'];
+               $admin_fakultas=$i['nama_admin'];
             ?>
 	<!--Modal Edit Pengguna-->
-        <div class="modal fade" id="ModalEdit<?php echo $pengguna_id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="ModalEdit<?php echo $id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -213,7 +205,7 @@ $this->load->view('admin/v_sidebar', $page);
                     <form class="form-horizontal" action="<?php echo base_url().'admin/pengguna/update_pengguna'?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
                             
-                            <input type="hidden" name="kode" value="<?php echo $pengguna_id;?>"/>
+                            <input type="hidden" name="kode" value="<?php echo $id;?>"/>
 
 
                                     <div class="form-group">
@@ -268,14 +260,12 @@ $this->load->view('admin/v_sidebar', $page);
 	<?php endforeach;?>
 
 	<?php foreach ($data->result_array() as $i) :
-              $pengguna_id=$i['pengguna_id'];
-                       $pengguna_email=$i['pengguna_email'];
-                       $pengguna_username=$i['pengguna_username'];
-                       $pengguna_level=$i['pengguna_level'];
-                       $pengguna_photo=$i['pengguna_photo'];
+             $id_fakultas=$i['id'];
+             $nama_fakultas=$i['nama_fakultas'];
+             $admin_fakultas=$i['nama_admin'];
             ?>
 	<!--Modal Hapus Pengguna-->
-        <div class="modal fade" id="ModalHapus<?php echo $pengguna_id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="ModalHapus<?php echo $id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -284,7 +274,7 @@ $this->load->view('admin/v_sidebar', $page);
                     </div>
                     <form class="form-horizontal" action="<?php echo base_url().'admin/pengguna/hapus_pengguna'?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
-							<input type="hidden" name="kode" value="<?php echo $pengguna_id;?>"/>
+							<input type="hidden" name="kode" value="<?php echo $id;?>"/>
                             <p>Apakah Anda yakin mau menghapus Superadmin <b><?php echo $nama;?></b> ?</p>
 
                     </div>
