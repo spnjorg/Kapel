@@ -13,7 +13,7 @@ $jum_pesan = $query->num_rows();
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>KAPEL UNIKA - Dashboard Admin</title>
   <!-- Tell the browser to be responsive to screen width -->
-  <link rel="shorcut icon" type="text/css" href="<?php echo base_url() . 'theme/images/HKBP2.png' ?>">
+  <link rel="shorcut icon" type="text/css" href="<?php echo base_url() . 'theme/images/UNIKA1.png' ?>">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
   <link rel="stylesheet" href="<?php echo base_url() . 'assets/bootstrap/css/bootstrap.min.css' ?>">
@@ -74,14 +74,14 @@ $this->load->view('admin/v_header');
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo base_url() . 'admin/renungan' ?>"><i class="fa fa-list"></i> Super Admin</a></li>
-            <li><a href="<?php echo base_url() . 'admin/renungan/add_renungan' ?>"><i class="fa fa-list"></i> Admin Fakultas</a></li>
+            <li><a href="<?php echo base_url() . 'admin/renungan' ?>"><i class="fa fa-user-plus"></i> Super Admin</a></li>
+            <li><a href="<?php echo base_url() . 'admin/renungan/add_renungan' ?>"><i class="fa fa-user-plus"></i> Admin Fakultas</a></li>
           </ul>
         </li>
 
         <li>
           <a href="<?php echo base_url() . 'admin/lingkungan' ?>">
-              <i i class="fa fa-pencil"></i> <span>Petugas Misa</span>
+              <i i class="fa fa-user"></i> <span>Petugas Misa</span>
               <span class="pull-right-container">
               <small class="label pull-right"></small>
             </span>
@@ -97,7 +97,7 @@ $this->load->view('admin/v_header');
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo base_url() . 'admin/jadwalibadah' ?>"><i class="fa fa-list"></i> Misa </a></li>
+            <li><a href="<?php echo base_url() . 'admin/jadwalibadah' ?>"><i class="fa fa-plus"></i> Misa </a></li>
             <li><a href="<?php echo base_url() . 'admin/jadwalpetugas' ?>"><i class="fa fa-list"></i> Lainnya</a></li>
           </ul>
         </li>
@@ -138,7 +138,7 @@ $this->load->view('admin/v_header');
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo base_url() . 'admin/jadwalibadah' ?>"><i class="fa fa-list"></i> Data Kolekte </a></li>
+            <li><a href="<?php echo base_url() . 'admin/jadwalibadah' ?>"><i class="fa fa-dollar"></i> Data Kolekte </a></li>
           </ul>
         </li>
 
@@ -273,41 +273,7 @@ $jml = $query->num_rows();
         </div>
         <!-- /.col -->
       </div>
-      <!-- /.row -->
 
-      <!-- Main row -->
-      <div class="row">
-        <!-- Left col -->
-        <div class="col-md-12">
-          <!-- MAP & BOX PANE -->
-          <div class="box box-success">
-            <div class="box-header with-border">
-              <h3 class="box-title">Renungan Terpopuler</h3>
-
-              <table class="table">
-              <?php
-$query = $this->db->query("SELECT * FROM tbl_renungan ORDER BY renungan_views DESC");
-foreach ($query->result_array() as $i):
-    $renungan_id = $i['renungan_id'];
-    $renungan_judul = $i['renungan_judul'];
-    $renungan_views = $i['renungan_views'];
-    ?>
-																																	                  <tr>
-																																	                    <td><?php echo $renungan_judul; ?></td>
-																																	                    <td><?php echo $renungan_views . ' Views'; ?></td>
-																																	                  </tr>
-																																	              <?php endforeach;?>
-              </table>
-            </div>
-
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->
-      </div>
     </section>
   </div>
 
